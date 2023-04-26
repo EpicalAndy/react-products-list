@@ -60,8 +60,6 @@ export function CreateProduct({ onCreate }: ProductCreateProps) {
           <Button variant="secondary" type="submit">Создать</Button>
         </InputGroup>
         {error && <Error error={error}></Error>}
-
-
       </form>
     </>
   )

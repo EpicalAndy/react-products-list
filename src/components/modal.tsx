@@ -3,13 +3,14 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from "react";
 
 import { ModalProps } from "../models";
+import { debug } from "util";
 
 
 export function ModalComponent({ children, title, onClose }: ModalProps) {
   const [ show, setShow ] = useState(true);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // @ts-ignore
+  const handleClose = () => onClose()
 
   return (
     <Modal backdrop="static"
