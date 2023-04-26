@@ -4,15 +4,16 @@ import { useContext } from "react";
 import { IProduct } from "../models";
 import { ModalContext } from "../context/ModalContext";
 import { useProducts } from "../hooks/products";
-import { Modal } from "../components/modal";
+import { ModalComponent } from "../components/modal";
 import { Product } from '../components/product';
 import { Error } from '../components/error';
 import { Loader } from '../components/loader';
 import { CreateProduct } from '../components/createproduct';
+import { Button } from "react-bootstrap";
 
 export function ProductPage() {
   const { load, error, products, addProduct } = useProducts();
-  const {modalVisible, open, close } = useContext(ModalContext);
+  const { modalVisible, open, close } = useContext(ModalContext);
 
   function createHandler(product: IProduct) {
     close();
@@ -22,13 +23,20 @@ export function ProductPage() {
 
   return (
     <div>
-      { load && <Loader></Loader> }
-      <button type='button' onClick={ () => open() }>Добавить продукт</button>
-      { error && <Error error={ error }></Error> }
-      { modalVisible && <Modal title='Добавить продукт' onClose={() => close() }>
-        <CreateProduct onCreate={ createHandler }></CreateProduct>
-      </Modal> }
-      { products.map(product => <Product product={ product } key={ product.id }></Product>) }
+      {load && <Loader></Loader>}
+      <Button
+        variant="info"
+        type='button'
+        onClick={() => open()}>
+        Добавить продукт
+      </Button>
+      {error && <Error error={error}></Error>}
+      {modalVisible &&
+        <ModalComponent title='Добавить продукт'
+                        onClose={() => close()}>
+          <CreateProduct onCreate={createHandler}></CreateProduct>
+        </ModalComponent>}
+      {products.map(product => <Product product={product} key={product.id}></Product>)}
     </div>
   );
 }

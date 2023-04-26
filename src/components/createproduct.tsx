@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react"
+import Form from 'react-bootstrap/Form';
+import { Button, InputGroup } from "react-bootstrap";
 
 import { Error } from "./error";
 import { IProduct } from "../models";
@@ -14,13 +16,13 @@ const newProduct: IProduct = {
   rating: { rate: 10, count: 20 }
 };
 
-export function CreateProduct({onCreate}: ProductCreateProps) {
-  const [value, setValue] = useState('');
-  const [error, setError] = useState('');
+export function CreateProduct({ onCreate }: ProductCreateProps) {
+  const [ value, setValue ] = useState('');
+  const [ error, setError ] = useState('');
 
   newProduct.title = value;
 
-  async function submitHandler(ev: React.FormEvent ) {
+  async function submitHandler(ev: React.FormEvent) {
     const val = value.trim();
 
     ev.preventDefault();
@@ -28,7 +30,7 @@ export function CreateProduct({onCreate}: ProductCreateProps) {
 
     if (!val.length) {
       setError('Нужно заполнить поле');
-  
+
       return;
     }
 
@@ -40,21 +42,27 @@ export function CreateProduct({onCreate}: ProductCreateProps) {
   }
 
   function changeHandler(event: React.KeyboardEvent<HTMLInputElement>) {
+    // @ts-ignore
     setValue(event.target.value);
   }
 
-  return(
+
+  return (
     <>
-    <form action="" onSubmit={submitHandler}>
-      <input type="text"
-      placeholder="введите текст" 
-      onChange={ changeHandler }
-      value={value}/>
+      <form action="" onSubmit={submitHandler}>
+        <InputGroup>
+          <Form.Control
+            placeholder="введите текст"
+            // @ts-ignore
+            onChange={changeHandler}
+            value={value}>
+          </Form.Control>
+          <Button variant="secondary" type="submit">Создать</Button>
+        </InputGroup>
+        {error && <Error error={error}></Error>}
 
-      { error && <Error error={error}></Error> }
 
-      <button type="submit">Создать</button>
-    </form>
+      </form>
     </>
   )
 }

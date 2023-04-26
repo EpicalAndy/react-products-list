@@ -1,14 +1,28 @@
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useState } from "react";
+
 import { ModalProps } from "../models";
 
-export function Modal({children, title, onClose}: ModalProps) {
+
+export function ModalComponent({ children, title, onClose }: ModalProps) {
+  const [ show, setShow ] = useState(true);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <>
-      <div style={ {position: 'fixed', backgroundColor: 'gray', opacity: 0.5, height: '100%', width: '100%', bottom: '0'} }
+    <Modal backdrop="static"
+           show={show}
+           onHide={handleClose}>
+      <div
         onClick={onClose}></div>
-      <div style={ {textAlign: 'center', backgroundColor: 'gray', opacity: 0.5, position: 'relative', zIndex: 100, top: '20em', left: 'calc(100% - 50% - 10em)', width: '20em'} }>
-        <h2>{ title }</h2>
-        { children }
+      <div>
+        <Modal.Header closeButton>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{children}</Modal.Body>
       </div>
-    </>
+    </Modal>
   )
 }

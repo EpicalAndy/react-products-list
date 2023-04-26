@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.css";
 
 import { ProductPage } from './pages/ProductsPage';
 import { AboutPage } from './pages/AboutPage';
