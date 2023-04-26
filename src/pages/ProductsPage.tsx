@@ -22,21 +22,24 @@ export function ProductPage() {
   }
 
   return (
-    <div>
-      {load && <Loader></Loader>}
-      <Button
-        variant="info"
-        type='button'
-        onClick={() => open()}>
-        Добавить продукт
-      </Button>
-      {error && <Error error={error}></Error>}
-      {modalVisible &&
-        <ModalComponent title='Добавить продукт'
-                        onClose={() => close()}>
-          <CreateProduct onCreate={createHandler}></CreateProduct>
-        </ModalComponent>}
-      {products.map(product => <Product product={product} key={product.id}></Product>)}
-    </div>
+    <><Button
+      variant="info"
+      type='button'
+      onClick={() => open()}>
+      Добавить продукт
+    </Button>
+      <div className='products-list'>
+        {load && <Loader></Loader>}
+
+        {error && <Error error={error}></Error>}
+        {modalVisible &&
+          <ModalComponent title='Добавить продукт'
+                          onClose={() => close()}>
+            <CreateProduct onCreate={createHandler}></CreateProduct>
+          </ModalComponent>}
+        {products.map(product => <Product product={product} key={product.id}></Product>)}
+      </div>
+    </>
+
   );
 }
