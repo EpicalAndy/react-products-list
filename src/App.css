@@ -49,3 +49,11 @@
   align-items: start;
   justify-content: space-between;
 }
+
+.app-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  background-color: white;
+}

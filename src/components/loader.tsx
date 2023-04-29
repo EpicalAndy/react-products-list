@@ -1,3 +1,10 @@
+import Spinner from 'react-bootstrap/Spinner';
+import Container from "react-bootstrap/Container";
+
 export function Loader() {
-  return (<p style={ {backgroundColor: 'yellow'} }>Loading...</p>)
+  return (
+    <Container className="app-loader">
+      <Spinner  variant="primary" animation="border"/>
+    </Container>
+  )
 }

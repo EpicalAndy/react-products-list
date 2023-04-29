@@ -22,12 +22,13 @@ export function ProductPage() {
   }
 
   return (
-    <><Button
+    <>{!load && <Button
+      className="m-2"
       variant="info"
       type='button'
       onClick={() => open()}>
       Добавить продукт
-    </Button>
+    </Button>}
       <div className='products-list'>
         {load && <Loader></Loader>}
 
@@ -37,7 +38,9 @@ export function ProductPage() {
                           onClose={() => close()}>
             <CreateProduct onCreate={createHandler}></CreateProduct>
           </ModalComponent>}
-        {products.map(product => <Product product={product} key={product.id}></Product>)}
+        {products.map(product => <Product
+          product={product}
+          key={product.id}></Product>)}
       </div>
     </>
 

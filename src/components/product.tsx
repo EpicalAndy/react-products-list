@@ -7,10 +7,11 @@ export function Product({ product }: ProductProos) {
   const [ details, setDetails ] = React.useState(false);
 
   return (
-    <Card style={{ width: '24rem' }}>
+    <Card className="m-2"
+          style={{ width: '20rem' }}>
       <Card.Body className="product-body">
         <Card.Title>
-          <h3>{product.title}</h3>
+          <h4>{product.title}</h4>
         </Card.Title>
         <Card.Img src={product.image} width={'100px'} alt="GGWP!"/>
 
